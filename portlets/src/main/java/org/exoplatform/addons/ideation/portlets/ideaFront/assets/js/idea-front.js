@@ -13,3 +13,4 @@ require( ["SHARED/jquery", "ideaFrontControllers"], function ( $,  ideaFrontCont
     });
 
 });
+//
