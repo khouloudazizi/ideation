@@ -7,12 +7,16 @@ import juzu.plugin.jackson.Jackson;
 import juzu.template.Template;
 
 import org.apache.commons.fileupload.FileItem;
+import org.apache.ecs.wml.U;
 import org.exoplatform.commons.juzu.ajax.Ajax;
 import org.exoplatform.commons.utils.PropertyManager;
+import org.exoplatform.ideation.entities.domain.IdeaEntity;
 import org.exoplatform.ideation.entities.dto.CommentDTO;
+import org.exoplatform.ideation.entities.dto.FavoriteDTO;
 import org.exoplatform.ideation.entities.dto.IdeaDTO;
 import org.exoplatform.ideation.service.IdeaService;
 import org.exoplatform.ideation.service.impl.CommentService;
+import org.exoplatform.ideation.service.impl.FavoriteService;
 import org.exoplatform.ideation.storage.Utils;
 import org.exoplatform.portal.application.PortalRequestContext;
 import org.exoplatform.services.jcr.RepositoryService;
@@ -30,6 +34,7 @@ import javax.inject.Inject;
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
 import javax.jcr.Session;
+import javax.ws.rs.core.SecurityContext;
 
 
 import java.io.IOException;
@@ -37,7 +42,7 @@ import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-@SessionScoped
+
 public class IdeaFrontController {
     private static Log log = ExoLogger.getLogger(IdeaFrontController.class);
 
@@ -51,9 +56,7 @@ public class IdeaFrontController {
     @Path("index.gtmpl")
     Template indexTmpl;
 
-    @Inject
-    @Path("Drafts.gtmpl")
-    Template DraftTmpl;
+
 
     @Inject
     IdentityManager identityManager;
@@ -69,9 +72,12 @@ public class IdeaFrontController {
     IdeaService ideaService;
 
 
+    @Inject
+    FavoriteService favoriteService;
+
     private String bundleString;
 
-    private final String currentUser = ConversationState.getCurrent().getIdentity().getUserId();
+    private String currentUser = ConversationState.getCurrent().getIdentity().getUserId();
 
 
 
@@ -82,12 +88,6 @@ public class IdeaFrontController {
         return indexTmpl.with(parameters).ok();
     }
 
-    @View
-    public Response.Content Draft() {
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("currentUser",currentUser);
-        return DraftTmpl.with(parameters).ok();
-    }
 
 
     @Ajax
@@ -102,17 +102,30 @@ public class IdeaFrontController {
         obj = ideaService.save(obj,true);
     }
 
+    @Ajax
+    @Resource(method = HttpMethod.POST)
+    @MimeType.JSON
+    @Jackson
+    public void saveFavorite(@Jackson FavoriteDTO obj) {
+        if (currentUser != null) {
+            obj.setAuthor(currentUser);
+        }
+            obj = favoriteService.save(obj);
+
+        }
+
+
+
 
     @Ajax
     @Resource(method = HttpMethod.POST)
     @MimeType.JSON
     @Jackson
-    public Response.Content saveDraft(@Jackson IdeaDTO obj,String User) {
-
-
-            obj = ideaService.save(obj,true);
-
-        return DraftTmpl.ok();
+    public void SaveDraft(@Jackson IdeaDTO obj) {
+        if (currentUser != null) {
+            obj.setCreatedBy(currentUser);
+        }
+        obj = ideaService.save(obj,true);
     }
 
 
@@ -144,30 +157,81 @@ public class IdeaFrontController {
     @Jackson
     public List<IdeaDTO> getIdeas() {
         try {
-            return ideaService.getAllIdeas();
+            return ideaService.getPublishedIdeas(currentUser);
         } catch (Throwable e) {
             return null;
         }
     }
-
 
     @Ajax
     @juzu.Resource
     @MimeType.JSON
     @Jackson
     public List<CommentDTO> getComments(@Jackson IdeaDTO obj) {
+
+          return  commentService.getCommentsByIdeaId();
+
+
+    }
+
+    @Ajax
+    @juzu.Resource
+    @MimeType.JSON
+    @Jackson
+    public List<IdeaDTO> getDraftedIdeasOfCurrentUser(String status) {
         try {
-            List<CommentDTO> comments= commentService.getCommentsByIdeaId(obj.getId(),0,100);
-            for (CommentDTO comment : comments){
-                comment.setAuthor(currentUser);
-            }
-            return comments;
+            if (status != null) {
+                if (status.equals("DRAFTED")) {
+                    return ideaService.getDraftIdeas(currentUser);
+                } else {
+                    return ideaService.getPublishedIdeas("PUBLISHED");
+                }
+                }else{
+            return null;
+        }
+
         } catch (Throwable e) {
             log.error(e);
             return null;
         }
+
     }
 
+    @Ajax
+    @juzu.Resource
+    @MimeType.JSON
+    @Jackson
+    public List<FavoriteDTO> getFavoritesByUserId() {
+
+        return favoriteService.getFavoritesByUserId(currentUser);
+
+
+    }
+
+
+    @Ajax
+    @Resource(method = HttpMethod.POST)
+    @MimeType.JSON
+    @Jackson
+    public void updateIdea(@Jackson IdeaDTO obj) {
+    obj = ideaService.save(obj, false);
+
+    }
+
+
+    @Ajax
+    @Resource(method = HttpMethod.POST)
+    @MimeType.JSON
+    @Jackson
+    public Response deleteIdea(@Jackson IdeaDTO obj) throws Exception {
+        try {
+            ideaService.delete(obj);
+            return Response.ok();
+        } catch (Exception e) {
+            log.error("Error when updating Idea", e);
+            return Response.error("");
+        }
+    }
 
 
     @Ajax
@@ -213,8 +277,9 @@ public class IdeaFrontController {
     @MimeType.JSON
     @Jackson
     public void saveComment(@Jackson CommentDTO obj) {
-        obj.setCommentText("blablabla");
-        obj.setAuthor(currentUser);
+        if (currentUser != null) {
+            obj.setAuthor(currentUser);
+        }
         commentService.save(obj);
     }
     @Ajax
