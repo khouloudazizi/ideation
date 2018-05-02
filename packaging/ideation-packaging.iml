@@ -11,6 +11,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="bootstrap" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.juzu:juzu-core:1.2.0-RC01" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.juzu:juzu-core:1.2.0-RC01" level="project" />
     <orderEntry type="module" module-name="ideation-extension" scope="PROVIDED" />
     <orderEntry type="module" module-name="ideation-portlets" scope="PROVIDED" />
     <orderEntry type="module" module-name="ideation-services" scope="PROVIDED" />
