@@ -50,7 +50,7 @@
     <button type="button" class="btn btn-primary" id="submit" ng-click="saveIdea(newIdea)">Confirm</button>
      <button type="button" class="btn btn-success"  ng-click="saveDraft(newIdea)">Save</button>
 
-                <button type="button" class="btn btn-default Cancel">Cancel</button>
+                <button type="button" class="btn btn-default Cancel" ng-click="Cancel()">Cancel</button>
 
 </form>
         </div>

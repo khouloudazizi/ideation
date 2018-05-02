@@ -1,6 +1,23 @@
 <div id="ideaFront" style="display: none;">
     <div ng-controller="ideaFrontCtrl" id="ideaFrontCtrl">
             <h2>Ideation</h2>
+        <div class="btn-toolbar" >
+            <div class="btn-group">
+                <button class="btn dropdown-toggle" data-toggle="dropdown">Action
+                    <i class="uiIconMiniArrowDown uiIconLightGray"></i></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li> <a class="dropdown-item" data-ng-click="loadIdeas()" href="#">All</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0)" data-ng-click="ideasToVAlidateFilter='DRAFTED';loadDraftedIdeas('DRAFTED')">My Drafts</a>
+                    </li>
+                    <li><a class="dropdown-item" href="javascript:void(0)" data-ng-click="ideasToVAlidateFilter='PUBLISHED';loadDraftedIdeas('PUBLISHED')">Published Ideas</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li> <a class="dropdown-item" data-ng-click="loadFavorites()" href="#">My Favorites</a>
+                    </li>
+                </ul>
+            </div><!-- /btn-group -->
+        </div>
             <!-- Button trigger modal -->
             <button id="modalBtn" class="button" style="position: relative; top : -50px; left: -343px;">Create Idea</button>
             <div id="simpleModal" class="modall">
@@ -16,18 +33,6 @@
                     </div>
                 </div>
             </div>
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Type
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" data-ng-click="loadIdeas()" href="#">All</a>
-                <a class="dropdown-item" href="javascript:void(0)" data-ng-click="ideasToVAlidateFilter='DRAFTED';loadDraftedIdeas('DRAFTED')">My Drafts</a>
-                <a class="dropdown-item" href="javascript:void(0)" data-ng-click="ideasToVAlidateFilter='PUBLISHED';loadDraftedIdeas('PUBLISHED')">Published Ideas</a>
-
-                <a class="dropdown-item" href="#">My Favorites</a>
-            </div>
-        </div>
 
         <div class="new-idea-container col-md-12" style="display: none;">
             <div class="new-idea-input panel panel-primary">

@@ -237,6 +237,8 @@ define("ideaFrontControllers", [ "SHARED/jquery", "SHARED/juzu-ajax"], function(
 
         $scope.saveDraft = function() {
             $scope.newIdea.status = "DRAFTED" ;
+            var modal = document.getElementById('simpleModal');
+            modal.style.display = 'none';
             $http({
                 data : $scope.newIdea,
                 method : 'POST',
@@ -251,6 +253,12 @@ define("ideaFrontControllers", [ "SHARED/jquery", "SHARED/juzu-ajax"], function(
                 //  $scope.setResultMessage($scope.i18n.defaultError, "error");
             });
 
+        };
+
+
+        $scope.Cancel = function () {
+            var modal = document.getElementById('simpleModal');
+            modal.style.display = 'none';
         };
 
         $scope.saveFavorite = function(idea) {
