@@ -19,7 +19,7 @@ public class CommentDTO implements Serializable{
 
         private long id;
 
-    private String              posterAvatar;
+        private String  posterAvatar;
 
 
         private Date createdTime;

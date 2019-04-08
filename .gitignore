@@ -141,3 +141,6 @@ nbactions.xml
 ### VS Code
 .vscode/
 
+### Node ;odules
+**/node_modules/
+

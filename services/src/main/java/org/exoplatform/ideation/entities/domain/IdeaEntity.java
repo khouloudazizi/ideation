@@ -47,10 +47,7 @@ import org.exoplatform.commons.api.persistence.ExoEntity;
                         query = "DELETE FROM Idea idea WHERE idea.id = :ideaId "
                 ),
 
-                @NamedQuery(
-                        name = "Idea.findMaxId",
-                        query = "SELECT MAX(idea.id) FROM Idea idea "
-                ),
+
 
 
 
