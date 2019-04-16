@@ -1,0 +1,39 @@
+16:52,31:022 INFO    [ProcessingContext]: Using processing tool JAVAC
+16:52,31:022 INFO    [ProcessingContext]: Using processing javac ProcessingEnvironment
+16:52,31:023 INFO    [ProcessingContext]: Using source path null
+16:52,31:023 INFO    [MainProcessor]: Using processing env juzu.impl.compiler.ProcessingContext
+16:52,31:034 FINER   [ProcessingContext]: Resolved resolved resource location=SOURCE_OUTPUT pkg=juzu relativeName=metamodel.ser from filer
+16:52,31:036 INFO    [MainProcessor]: Created new meta model
+16:52,31:040 INFO    [ProcessingContext]: Loading services implementation of juzu.impl.plugin.module.metamodel.ModuleMetaModelPlugin
+16:52,31:167 INFO    [ProcessingContext]: Using plugins: application less
+16:52,31:167 INFO    [ProcessingContext]: Loading services implementation of juzu.impl.plugin.application.metamodel.ApplicationMetaModelPlugin
+16:52,31:219 INFO    [ProcessingContext]: Using plugins: controller template ajax asset binding router amd portlet plf4-ajax
+16:52,31:220 INFO    [ProcessingContext]: Plugin controller supports [juzu.Consumes, juzu.View, juzu.Action, juzu.Resource]
+16:52,31:220 INFO    [ProcessingContext]: Plugin template supports [juzu.Path, juzu.template.Tags]
+16:52,31:220 INFO    [ProcessingContext]: Plugin ajax supports [juzu.plugin.ajax.Ajax]
+16:52,31:224 INFO    [ProcessingContext]: Plugin asset supports [juzu.plugin.asset.Stylesheets, juzu.plugin.asset.Scripts]
+16:52,31:228 INFO    [ProcessingContext]: Plugin binding supports [juzu.plugin.binding.Bindings]
+16:52,31:229 INFO    [ProcessingContext]: Plugin router supports [juzu.Route]
+16:52,31:229 INFO    [ProcessingContext]: Plugin amd supports [juzu.plugin.amd.Modules]
+16:52,31:230 INFO    [ProcessingContext]: Plugin portlet supports [juzu.plugin.portlet.Portlet]
+16:52,31:230 INFO    [ProcessingContext]: Plugin plf4-ajax supports [org.exoplatform.commons.juzu.ajax.Ajax]
+16:52,31:240 INFO    [ProcessingContext]: Plugin application supports [juzu.Path, juzu.View, juzu.Action, juzu.plugin.binding.Bindings, juzu.plugin.asset.Stylesheets, juzu.Resource, juzu.plugin.ajax.Ajax, juzu.Route, juzu.Consumes, juzu.Application, juzu.plugin.portlet.Portlet, juzu.template.Tags, juzu.plugin.asset.Scripts, juzu.plugin.amd.Modules, org.exoplatform.commons.juzu.ajax.Ajax]
+16:52,31:242 INFO    [ProcessingContext]: Plugin less supports [juzu.plugin.less.Less]
+16:52,31:244 INFO    [MainProcessor]: Starting APT round #0
+16:52,31:245 INFO    [MainProcessor]: Activating model
+16:52,31:257 INFO    [ProcessingContext]: Loading services implementation of juzu.template.TagHandler
+16:52,31:266 INFO    [ProcessingContext]: Loaded tag handler juzu.impl.tags.DecorateTag as decorate
+16:52,31:266 INFO    [ProcessingContext]: Loaded tag handler juzu.impl.tags.IncludeTag as include
+16:52,31:266 INFO    [ProcessingContext]: Loaded tag handler juzu.impl.tags.InsertTag as insert
+16:52,31:266 INFO    [ProcessingContext]: Loaded tag handler juzu.impl.tags.ParamTag as param
+16:52,31:266 INFO    [ProcessingContext]: Loaded tag handler juzu.impl.tags.TitleTag as title
+16:52,31:267 INFO    [ProcessingContext]: Loading services implementation of juzu.impl.template.spi.TemplateProvider
+16:52,31:272 INFO    [MainProcessor]: Process annotations
+16:52,31:272 INFO    [MainProcessor]: Post processing model
+16:52,31:275 INFO    [MainProcessor]: Process events
+16:52,31:275 INFO    [MainProcessor]: Post process events
+16:52,31:275 INFO    [MainProcessor]: Ending APT round #0
+16:52,31:351 INFO    [MainProcessor]: APT processing over
+16:52,31:352 INFO    [MainProcessor]: Passivating model
+16:52,31:352 INFO    [ProcessingContext]: Emitting module config
+16:52,31:353 INFO    [ProcessingContext]: Passivating templates
