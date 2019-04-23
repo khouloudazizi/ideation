@@ -1,21 +1,24 @@
 <template>
  
-  <div id="IdeaApp">
+  <div id="IdeaApp" >
 
-     <Home></Home>
-    
-        <router-view />
+     <tabs/>
+     <router-view />
+     
     </div>
 </template>
 
 
  <script>
-import Home from './Home.vue'
+//import NavApp from './NavApp.vue'
+import tabs from './tabs.vue'
 export default {
-       components:{Home},
+       components:{tabs},
+
+
   
- 
-  }
+}
+  
   </script>
   <style ></style>
    

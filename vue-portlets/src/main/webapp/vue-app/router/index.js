@@ -1,23 +1,52 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '../components/Home.vue'
-import Blog from '../components/Blog.vue'
-
+import IdeaDrafted from '../components/IdeaDrafted.vue'
+import IdeaFav from '../components/IdeaFav.vue'
+import IdeaPublished from '../components/IdeaPublished.vue'
+import IdeaInfo from '../components/IdeaInfo.vue'
+import IdeaArchived from '../components/IdeaArchived.vue'
+import test from '../components/test.vue';
 
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
-    {
-      path: '/',
-      name: 'Home',
-      component: Home
-    },
-    {
-      path: '/blog',
-      name: 'Blog',
-      component: Blog
-    }
+  
+      {
+        path: '/ideadrafted',
+        name: 'IdeaDrafted',
+        component: IdeaDrafted
+      },
+    
+      {
+        path: '/ideafav',
+        name: 'IdeaFav',
+        component: IdeaFav
+      },
+      {
+        path: '/',
+        name: 'IdeaPublished',
+        component: IdeaPublished
+      },
+      
+      {
+        path: '/ideainfo',
+        name: 'IdeaInfo',
+        component: IdeaInfo
+      },
+      {
+        path: '/ideaarchived',
+        name: 'IdeaArchived',
+        component: IdeaArchived
+      }, 
+      {
+        path: '/test',
+        name: 'test',
+        component: test
+      }
+
+
   ]
+  
 })

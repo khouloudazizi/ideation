@@ -53,9 +53,12 @@
           <string>fonts/KFOmCnqEu92Fr1Mu7mxKOzY.woff2</string>
           <string>fonts/KFOmCnqEu92Fr1Mu7WxKOzY.woff2</string>
           <string>index.html</string>
+          <string>js/lib/JsBarcode.all.min.js</string>
+          <string>js/lib/quagga.min.js</string>
           <string>js/lib/vuetify.min.js</string>
           <string>META-INF/exo-conf/configuration.xml</string>
           <string>vue-app/components/Blog.vue</string>
+          <string>vue-app/components/CreateIdea.vue</string>
           <string>vue-app/components/Home.vue</string>
           <string>vue-app/components/IdeaApp.vue</string>
           <string>vue-app/idea.js</string>

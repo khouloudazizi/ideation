@@ -1,12 +1,9 @@
-import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
-import Vuetify from 'vuetify';
+import Vue from 'vue';
 import IdeaApp from './components/IdeaApp.vue';
 import router from './router/index';
-import VueMaterial from 'vue-material'
-import 'vue-material/dist/vue-material.min.css'
-import 'vue-material/dist/theme/default.css'
+import '../css/main.less';
+
 Vue.use(Vuetify);
-Vue.use(VueMaterial);
 
 const vueInstance = new Vue({
   el: '#IdeaApp',
