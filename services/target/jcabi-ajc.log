@@ -1,0 +1,30 @@
+Mon Apr 29 15:01:21 CEST 2019
+/home/khouloud/.m2/repository/com/googlecode/mp4parser/isoparser/1.0-RC-1/isoparser-1.0-RC-1.jar!com/googlecode/mp4parser/RequiresParseDetailAspect.class [warning] can not build thisJoinPoint lazily for this advice since it has no suitable guard [Xlint:noGuardForLazyTjp]
+	
+org/exoplatform/ideation/service/utils/IdeaService.java:107 [warning] can not implement lazyTjp on this joinpoint method-execution(org.exoplatform.ideation.dto.IdeaDTO org.exoplatform.ideation.service.utils.IdeaService.addIdea(org.exoplatform.ideation.dto.IdeaDTO)) because around advice is used [Xlint:canNotImplementLazyTjp]
+	
+	see also: /home/khouloud/.m2/repository/org/exoplatform/commons/commons-component-common/5.2.0-RC09/commons-component-common-5.2.0-RC09.jar!org/exoplatform/commons/persistence/impl/ExoTransactionalAspect.class::0
+Join point 'method-execution(org.exoplatform.ideation.dto.IdeaDTO org.exoplatform.ideation.service.utils.IdeaService.addIdea(org.exoplatform.ideation.dto.IdeaDTO))' in Type 'org.exoplatform.ideation.service.utils.IdeaService' (IdeaService.java:107) advised by around advice from 'org.exoplatform.commons.persistence.impl.ExoTransactionalAspect' (commons-component-common-5.2.0-RC09.jar!ExoTransactionalAspect.class(from ExoTransactionalAspect.java))
+	
+org/exoplatform/ideation/service/utils/IdeaService.java:125 [warning] can not implement lazyTjp on this joinpoint method-execution(void org.exoplatform.ideation.service.utils.IdeaService.deleteIdea(java.lang.Long)) because around advice is used [Xlint:canNotImplementLazyTjp]
+	
+	see also: /home/khouloud/.m2/repository/org/exoplatform/commons/commons-component-common/5.2.0-RC09/commons-component-common-5.2.0-RC09.jar!org/exoplatform/commons/persistence/impl/ExoTransactionalAspect.class::0
+Join point 'method-execution(void org.exoplatform.ideation.service.utils.IdeaService.deleteIdea(java.lang.Long))' in Type 'org.exoplatform.ideation.service.utils.IdeaService' (IdeaService.java:125) advised by around advice from 'org.exoplatform.commons.persistence.impl.ExoTransactionalAspect' (commons-component-common-5.2.0-RC09.jar!ExoTransactionalAspect.class(from ExoTransactionalAspect.java))
+	
+org/exoplatform/ideation/service/utils/IdeaService.java:139 [warning] can not implement lazyTjp on this joinpoint method-execution(org.exoplatform.ideation.dto.IdeaDTO org.exoplatform.ideation.service.utils.IdeaService.updateIdea(org.exoplatform.ideation.dto.IdeaDTO)) because around advice is used [Xlint:canNotImplementLazyTjp]
+	
+	see also: /home/khouloud/.m2/repository/org/exoplatform/commons/commons-component-common/5.2.0-RC09/commons-component-common-5.2.0-RC09.jar!org/exoplatform/commons/persistence/impl/ExoTransactionalAspect.class::0
+Join point 'method-execution(org.exoplatform.ideation.dto.IdeaDTO org.exoplatform.ideation.service.utils.IdeaService.updateIdea(org.exoplatform.ideation.dto.IdeaDTO))' in Type 'org.exoplatform.ideation.service.utils.IdeaService' (IdeaService.java:139) advised by around advice from 'org.exoplatform.commons.persistence.impl.ExoTransactionalAspect' (commons-component-common-5.2.0-RC09.jar!ExoTransactionalAspect.class(from ExoTransactionalAspect.java))
+	
+org/exoplatform/ideation/service/utils/CommentService.java:42 [warning] can not implement lazyTjp on this joinpoint method-execution(org.exoplatform.ideation.dto.CommentDTO org.exoplatform.ideation.service.utils.CommentService.addComment(org.exoplatform.ideation.dto.CommentDTO)) because around advice is used [Xlint:canNotImplementLazyTjp]
+	
+	see also: /home/khouloud/.m2/repository/org/exoplatform/commons/commons-component-common/5.2.0-RC09/commons-component-common-5.2.0-RC09.jar!org/exoplatform/commons/persistence/impl/ExoTransactionalAspect.class::0
+Join point 'method-execution(org.exoplatform.ideation.dto.CommentDTO org.exoplatform.ideation.service.utils.CommentService.addComment(org.exoplatform.ideation.dto.CommentDTO))' in Type 'org.exoplatform.ideation.service.utils.CommentService' (CommentService.java:42) advised by around advice from 'org.exoplatform.commons.persistence.impl.ExoTransactionalAspect' (commons-component-common-5.2.0-RC09.jar!ExoTransactionalAspect.class(from ExoTransactionalAspect.java))
+	
+org/exoplatform/ideation/service/utils/FavService.java:63 [warning] can not implement lazyTjp on this joinpoint method-execution(org.exoplatform.ideation.dto.FavoritDTO org.exoplatform.ideation.service.utils.FavService.addFav(org.exoplatform.ideation.dto.FavoritDTO)) because around advice is used [Xlint:canNotImplementLazyTjp]
+	
+	see also: /home/khouloud/.m2/repository/org/exoplatform/commons/commons-component-common/5.2.0-RC09/commons-component-common-5.2.0-RC09.jar!org/exoplatform/commons/persistence/impl/ExoTransactionalAspect.class::0
+Join point 'method-execution(org.exoplatform.ideation.dto.FavoritDTO org.exoplatform.ideation.service.utils.FavService.addFav(org.exoplatform.ideation.dto.FavoritDTO))' in Type 'org.exoplatform.ideation.service.utils.FavService' (FavService.java:63) advised by around advice from 'org.exoplatform.commons.persistence.impl.ExoTransactionalAspect' (commons-component-common-5.2.0-RC09.jar!ExoTransactionalAspect.class(from ExoTransactionalAspect.java))
+	
+/home/khouloud/.m2/repository/com/googlecode/mp4parser/isoparser/1.0-RC-1/isoparser-1.0-RC-1.jar!com/googlecode/mp4parser/RequiresParseDetailAspect.class [warning] advice defined in com.googlecode.mp4parser.RequiresParseDetailAspect has not been applied [Xlint:adviceDidNotMatch]
+	
