@@ -15,7 +15,7 @@
     class="textet"
   >
   <v-text-field
-      v-model="titre"
+      v-model="title"
       :counter="10"
       :rules="nameRules"
       placeholder="Titre" 
@@ -25,18 +25,7 @@
    
       <v-textarea   prepend-icon="edit" v-model="description" placeholder="Description ..."  /> 
   
-                    <v-flex md10>
-                      <select
-                      
-                        class="select_style"
-                        :options="option"
-                        placeholder="Categories" >
-                        <option v-for="option in options" :key="option.id">
-                          {{ option.status }}
-                        </option>
-                      </select>
-                  
-                    </v-flex>
+              
           </v-form>
         
         </v-card-text>
@@ -47,7 +36,7 @@
            <v-btn color="red" flat @click="reset">reset</v-btn>
 
           <v-btn color="blue darken-1" flat @click="annuler">Close</v-btn>
-          <v-btn color="blue darken-1" flat @click="annuler">Save</v-btn>
+          <v-btn color="blue darken-1" flat @click="addIdea">Save</v-btn>
         </v-card-actions>
        
       </v-card>
@@ -56,21 +45,46 @@
  
 </template>
 <script>
+import axios from 'axios';
  export default {
   data() {
-    return { titre:null,
-             description:null,
+    return { 
             dialog: false,
-            options: [
-            {status:"publiée",id:"1"},
-            {status:"archiver",id:"2"},
-            {status:"drafted",id:"3"}
-            ]
+title:'',
+description:'',
+     
+ datajson:{
+             createdTime:'' ,
+             title:'',
+             description:'',
+             user:'exoPlatform26',
+             status:"DRAFET"
+          },
+
+
+           
     }
   },
    methods: {
+
+       addIdea(){
+    this.datajson.title=this.title;
+    this.datajson.description=this.description;
+    this.datajson.createdTime=new Date();
+    console.log(this.datajson);
+       axios.post('http://127.0.0.1:8080/portal/rest/idea/addIdea', this.datajson, {
+    headers: {
+      'Content-type': 'application/json',
+    }
+   }) 
+   
+   this.title='';
+   this.description='';
+ 
+       
+    },
     reset() {
-       this.titre= null;
+       this.title= null;
        this.description=null;
        console.log("ok");
        

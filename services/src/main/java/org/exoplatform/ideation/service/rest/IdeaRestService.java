@@ -26,46 +26,57 @@ public class IdeaRestService implements ResourceContainer {
     ideaService= CommonsUtils.getService(IdeaService.class);
   }
 
-  @GET
-  @Path("/getdrafted/{DRAFET}")
-  public Response getDraftIdeas(@PathParam("DRAFET") IdeaEntity.Status draft) {
+   @GET
+    @Path("/all/{PUBLISHED}")
+    public Response getAllIdeaPublished(@PathParam("PUBLISHED") IdeaEntity.Status PUBLISHED) {
 
-    try {
-      List<IdeaDTO> draftIdea = ideaService.getIdeaDraft(draft);
 
-      return Response.ok(draftIdea, MediaType.APPLICATION_JSON).build();
+        try {
+            List<IdeaDTO> allIdeaPublished = ideaService.getIdeaPublished(PUBLISHED);
 
-    } catch (Exception e) {
+            return Response.ok(allIdeaPublished, MediaType.APPLICATION_JSON).build();
 
-      LOG.error("Error listing all Idea ", e);
+        } catch (Exception e) {
 
-      return Response.serverError()
-                     .entity("Error listing all Idea")
-                     .build();
+            LOG.error("Error listing all Idea Published ", e);
+
+            return Response.serverError()
+                    .entity("Error listing all Idea Published")
+                    .build();
+        }
     }
-  }
+   @GET
+   @Path("/getone/{id}")
+   public Response getone(@PathParam("id") Long id){
+        try {
+            IdeaDTO findoneidea=ideaService.getIdea(id);
+            return Response.ok(findoneidea, MediaType.APPLICATION_JSON).build();
+
+        } catch (Exception e) {
+
+            LOG.error("Error listing all Idea Published ", e);
+
+            return Response.serverError()
+                    .entity("Error listing all Idea Published")
+                    .build();
+        }
+   }
     @GET
-    @Path("/getarchived/{ARCHIVED}")
-    public Response getArchivedIdeas(@PathParam("ARCHIVED") IdeaEntity.Status archived) {
+    @Path("allpublishedbyuser/{PUBLISHED}/{user}")
+    public Response getAllPublishedByUser(@PathParam("PUBLISHED") IdeaEntity.Status PUBLISHED,@PathParam("user") String user) {
+        try {
+            List<IdeaDTO> allIdeaPublishedByUser = ideaService.getIdeaPublishedByUser(PUBLISHED, user);
+            return Response.ok(allIdeaPublishedByUser, MediaType.APPLICATION_JSON).build();
 
+        } catch (Exception e) {
 
-      try {
-        List<IdeaDTO> draftIdea = ideaService.getIdeaArchived(archived);
+            LOG.error("Error listing all Idea Published by user ", e);
 
-        return Response.ok(draftIdea, MediaType.APPLICATION_JSON).build();
-
-      } catch (Exception e) {
-
-        LOG.error("Error listing all Idea ", e);
-
-        return Response.serverError()
-                       .entity("Error listing all Idea")
-                       .build();
-      }
-
-
-
-  }
+            return Response.serverError()
+                    .entity("Error listing all Idea Published user")
+                    .build();
+        }
+    }
   @POST
   @Path("addIdea")
   public  Response addIdea(IdeaDTO ideaDTO){
