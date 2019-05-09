@@ -119,15 +119,18 @@ public class IdeaService {
   @ExoTransactional
 
   public void deleteIdea(Long id) {
+    IdeaEntity idea=null;
+    idea=ideaDao.find(id);
+    if(idea!=null) {
 
-    try {
+      try {
 
-      ideaDao.delete(ideaDao.find(id));
+        ideaDao.delete(idea);
 
-    } catch (Exception e) {
-      LOG.error("Error to delete idea with id {}", id, e);
+      } catch (Exception e) {
+        LOG.error("Error to delete idea with id {}", id, e);
+      }
     }
-
   }
 
 
@@ -152,6 +155,8 @@ public class IdeaService {
 
     return null;
   }
+
+
 
 
 

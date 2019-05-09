@@ -1,56 +1,59 @@
 <template>
-  <v-layout row>
-    <v-flex xs12 sm8 offset-sm1>
-      <v-card>
-       <v-list two-line>
-          <template v-for="(idea, index) in ideas">
-            <v-list-tile
-              :key="idea.titre"
-              avatar
-              ripple
-              @click="toggle(index)"
+<v-layout row class="styletocard">
+<v-flex xs12 sm8 offset-sm1>
+<v-card>
+<v-list two-line>
+<template v-for="(idea, index) in ideas">
+ <v-list-tile
+ :key="idea.title"
+  avatar
+   ripple
+    @click="toggle(index)"
             >
-              <v-list-tile-content>
-                <v-list-tile-title>{{ idea.titre }}</v-list-tile-title>
-                <v-list-tile-sub-title class="text--primary">{{ idea.user }}</v-list-tile-sub-title>
-                <v-list-tile-sub-title>{{ idea.date }}</v-list-tile-sub-title>
-              </v-list-tile-content>
+  <v-list-tile-content>
+  <v-list-tile-title>{{ idea.title }}</v-list-tile-title>
+  <v-list-tile-sub-title class="text--primary"> Crée par : {{ idea.user }}</v-list-tile-sub-title>
+  </v-list-tile-content>
 
            
 
-                <v-icon
-                
-                  color="yellow darken-2"
-                >
-                  star
-                </v-icon>
+<v-icon color="yellow darken-2">
+   star
+ </v-icon>
 
-            </v-list-tile>
-            <v-divider
-              v-if="index + 1 < ideas.length"
-              :key="index"
-            ></v-divider>
-          </template>
-        </v-list>
-      </v-card>
-    </v-flex>
+</v-list-tile>
+ <v-divider
+  v-if="index + 1 < ideas.length"
+ :key="index"
+ ></v-divider>
+  </template>
+  </v-list>
+  </v-card>
+  </v-flex>
   </v-layout>
 </template>
 <script>
+import axios from 'axios';
   export default {
     data () {
       return {
-        selected: [2],
-         ideas: [
-        { titre: 'The Net Ninja', user: 'Web developer',date :"01-03-2019" },
-        { titre: 'Ryu', user: 'Graphic designer' ,date :"01-03-2019"},
-        { titre: 'Chun Li', user: 'Web developer' ,date :"01-03-2019" },
-        { titre: 'Gouken', user: 'Social media maverick' ,date :"01-03-2019"  },
-        { titre: 'Yoshi', user: 'Sales guru' ,date :"01-03-2019"}
-      ]
+      ideas:[],
         
       }
     },
+    
+ mounted () { 
+    
+    axios
+      .get('http://127.0.0.1:8080/portal/rest/fav/getallordered')
+      .then(response => { this.ideas=response.data;
+        
+      })
+      .catch(error => {
+        console.log(error)
+        this.errored = true
+      })
+  },
 
     methods: {
       toggle (index) {
@@ -65,6 +68,13 @@
     }
   }
 </script>
+<style>
+.styletocard{
+  width: 146%;
+  margin-left: -10%;
+}
+</style>
+
 
 
 

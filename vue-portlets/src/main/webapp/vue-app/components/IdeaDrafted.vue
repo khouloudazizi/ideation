@@ -13,7 +13,7 @@
 
 <div class="font-weight-bold">créer par {{d.user}} le {{ d.createdTime }}</div>
     <v-dialog v-model="dialog" persistent max-width="500px">
-      <button slot="activator" class="btn" @click="update">Modifier </button>
+      <button slot="activator" class="btn">Modifier </button>
     <v-card>
           <v-container class="backgroundTop" >
         <v-card-title>
@@ -28,7 +28,7 @@
   >
   <v-text-field
       v-model="d.title"
-      :counter="10"
+    
       :rules="nameRules"
      prepend-icon="edit"
     
@@ -43,16 +43,16 @@
         
         <v-card-actions >
           <v-spacer></v-spacer>
-           <v-btn color="red" flat @click="reset">reset</v-btn>
-           <v-btn color="blue darken-1" flat @click="annuler">Close</v-btn>
-          <v-btn color="blue darken-1" flat @click="annuler">Save</v-btn>
+           <v-btn color="red"  @click="reset">reset</v-btn>
+           <v-btn color="blue darken-1"  @click="annuler">Close</v-btn>
+          <v-btn color="blue darken-1"  @click.prevent="UpdateIdea(d.id,d.title,d.description)">Save</v-btn>
 
         </v-card-actions>
        
       </v-card>
   </v-dialog>
-      <button slot="activator" class="btn" >Supprimer </button>
-      <button slot="activator" class="btn-primary">publier</button>
+      <button  class="btn" @click.prevent="DeleteIdea(d.id,index)">Supprimer </button>
+      <button  class="btn-primary" @click.prevent="AddToPublished(d.id,d.title,d.description,index)">Publier</button>
 
 
 
@@ -76,15 +76,26 @@ export default {
 data() { 
 return {
  donnes:[],
+ 
  dialog: false,
- title:'',
-description:'',
-     
+datajson:{
+        id:null,
+        createdTime:null,
+        title:'',
+        description:'',
+        status:'',
+        user:'root'
+    },
+
+}},
+    
+
+
 
  mounted () { 
     
     axios
-      .get('http://127.0.0.1:8080/portal/rest/idea/all/DRAFET')
+      .get('http://127.0.0.1:8080/portal/rest/idea/allpublishedbyuser/DRAFET')
       .then(response => { this.donnes=response.data;
         
       })
@@ -92,16 +103,74 @@ description:'',
         console.log(error)
         this.errored = true
       })
-      
   },
 
    methods: {
+     DeleteIdea: function(event){
+          const idx = this.donnes.indexOf(event);
+             axios.delete('http://127.0.0.1:8080/portal/rest/idea/delete/'+event, {
+              headers : {
+                  'Content-Type' : 'application/json'
+              }
+          }).then( axios
+      .get('http://127.0.0.1:8080/portal/rest/idea/allpublishedbyuser/DRAFET')
+      .then(response => { this.donnes=response.data;
+        
+      })
+      .catch(error => {
+        console.log(error)
+        this.errored = true
+      }))
 
+     },
+     AddToPublished:function(id,title,description){
+                const idx = this.donnes.indexOf();
+                 
+       this.datajson.status="PUBLISHED";
+       this.datajson.createdTime=new Date();
+     this.datajson.description=description;
+     this.datajson.title=title;
+     this.datajson.id=id;
+  axios.put('http://127.0.0.1:8080/portal/rest/idea/update', this.datajson, {
+    headers: {
+      'Content-type': 'application/json',
+    }
+   }).then( axios
+      .get('http://127.0.0.1:8080/portal/rest/idea/allpublishedbyuser/DRAFET')
+      .then(response => { this.donnes=response.data;
+        
+      })
+      .catch(error => {
+        console.log(error)
+        this.errored = true
+      }))
 
-  
-     
+     },
+        UpdateIdea:function(id,title,description){
 
-    reset() {
+           this.datajson.status="DRAFET";
+       this.datajson.createdTime=new Date();
+     this.datajson.description=description;
+     this.datajson.title=title;
+     this.datajson.id=id;
+     console.log(this.datajson);
+ axios.put('http://127.0.0.1:8080/portal/rest/idea/update', this.datajson, {
+    headers: {
+      'Content-type': 'application/json',
+    }
+   }).then( axios
+      .get('http://127.0.0.1:8080/portal/rest/idea/allpublishedbyuser/DRAFET')
+      .then(response => { this.donnes=response.data;
+        
+      })
+      .catch(error => {
+        console.log(error)
+        this.errored = true
+      }))
+        }
+,
+
+       reset() {
        this.titre= null;
        this.description=null;
        console.log("ok");

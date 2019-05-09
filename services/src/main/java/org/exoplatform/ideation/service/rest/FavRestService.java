@@ -2,6 +2,7 @@ package org.exoplatform.ideation.service.rest;
 
 import org.exoplatform.commons.utils.CommonsUtils;
 import org.exoplatform.ideation.dto.FavoritDTO;
+import org.exoplatform.ideation.dto.OrderIdeaDTO;
 import org.exoplatform.ideation.entities.FavoriteEntity;
 import org.exoplatform.ideation.service.utils.FavService;
 import org.exoplatform.services.log.ExoLogger;
@@ -42,6 +43,24 @@ public class FavRestService implements ResourceContainer {
     }
   }
   @GET
+  @Path("/getallordered")
+  public Response getallordered(){
+    try {
+      List<OrderIdeaDTO>allordered=favService.getAllOrderByFav();
+      return Response.ok(allordered, MediaType.APPLICATION_JSON).build();
+
+
+    }catch (Exception e){
+      LOG.error("Error listing all fav ", e);
+      return Response.serverError()
+                     .entity("Error listing all fav")
+                     .build();
+
+    }
+  }
+
+
+  @GET
   @Path("/verif/{user}/{id}")
   public Response getVerif(@PathParam("user") String user, @PathParam("id") Long id) {
     try {
@@ -71,6 +90,23 @@ public class FavRestService implements ResourceContainer {
                      .build();
     }
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   @POST
   @Path("/addfav")
   public Response addFav(FavoritDTO favoritDTO){

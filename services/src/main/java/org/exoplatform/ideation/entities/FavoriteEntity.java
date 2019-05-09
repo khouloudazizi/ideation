@@ -10,7 +10,9 @@ import java.io.Serializable;
 @NamedQueries({
     @NamedQuery(name = "Fav.getAllFavByUser", query = "select f from fav f where f.user=:user"),
     @NamedQuery(name = "Fav.getAllFavByUserAndId", query = "select f from fav f where f.user=:user AND f.idea.id=:id"),
-    @NamedQuery(name = "Fav.getAllFavById", query = "select f from fav f where f.idea.id=:id")
+    @NamedQuery(name = "Fav.getAllFavById", query = "select f from fav f where f.idea.id=:id"),
+    @NamedQuery(name = "Fav.getAllOrderByFav", query = "SELECT f FROM fav f  GROUP BY f.idea.id order by count(*) desc"),
+    @NamedQuery(name = "Fav.getnumberOffav", query = "SELECT count(*) FROM fav f where f.idea.id=:id")
 
 
 })
